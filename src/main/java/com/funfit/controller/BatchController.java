@@ -22,7 +22,7 @@ import com.funfit.service.BatchService;
 public class BatchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	BatchService bs = new BatchService();
+	BatchService batchService = new BatchService();
 
 	public BatchController() {
 		super();
@@ -31,12 +31,14 @@ public class BatchController extends HttpServlet {
 
 	// view purpose
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		List<Batch> listOfBatch = bs.viewAllBatch();
-		HttpSession hs = request.getSession();
-		hs.setAttribute("batches", listOfBatch);
+			throws ServletException, IOException
+	{
+		List<Batch> listOfBatch = batchService.viewAllBatch();
+		HttpSession httpSession = request.getSession();
+		httpSession.setAttribute("batches", listOfBatch);
+		
 		String flagValue = request.getParameter("flag");
+		
 		if (flagValue.equals("2")) {
 			response.sendRedirect("addParticipants.jsp");
 		} else {
@@ -46,18 +48,24 @@ public class BatchController extends HttpServlet {
 
 	// store or insert
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
+			throws ServletException, IOException
+	{
+		PrintWriter printWriter = response.getWriter();
 		response.setContentType("text/html");
+		
 		String typeofbatch = request.getParameter("typeofbatch");
 		String time = request.getParameter("time");
-		RequestDispatcher rd = request.getRequestDispatcher("addBatch.jsp");
-		Batch bb = new Batch();
-		bb.setTypeofbatch(typeofbatch);
-		bb.setTime(time);
-		String result = bs.addBatch(bb);
-		pw.println(result);
-		rd.include(request, response);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("addBatch.jsp");
+		
+		Batch batch = new Batch();
+		batch.setTypeofbatch(typeofbatch);
+		batch.setTime(time);
+		
+		String result = batchService.addBatch(batch);
+		printWriter.println(result);
+		
+		requestDispatcher.include(request, response);
 	}
 
 	@Override

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.funfit.bean.Participants;
-import com.funfit.service.ParticipantsService;
+import com.funfit.bean.Participant;
+import com.funfit.service.ParticipantService;
 
 /**
  * Servlet implementation class ParticipantsController
@@ -22,7 +22,7 @@ import com.funfit.service.ParticipantsService;
 public class ParticipantsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	ParticipantsService ps = new ParticipantsService();
+	ParticipantService participantService = new ParticipantService();
 
 	public ParticipantsController() {
 		super();
@@ -31,10 +31,12 @@ public class ParticipantsController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		HttpSession hs = request.getSession();
-		List<Participants> listOfParticipants = ps.viewAllParticipants();
-		hs.setAttribute("participants", listOfParticipants);
+		PrintWriter printWriter = response.getWriter();
+		HttpSession httpSession = request.getSession();
+		
+		List<Participant> listOfParticipants = participantService.viewAllParticipants();
+		httpSession.setAttribute("participants", listOfParticipants);
+		
 		response.sendRedirect("viewParticipants.jsp");
 	}
 
@@ -42,22 +44,24 @@ public class ParticipantsController extends HttpServlet {
 			throws ServletException, IOException
 	{
 		
-		PrintWriter pw = response.getWriter();
+		PrintWriter printWriter = response.getWriter();
 		response.setContentType("text/html");
 		String firstName = request.getParameter("firstName");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String phoneNumber = request.getParameter("phoneNumber");
 		int bid = Integer.parseInt(request.getParameter("bid"));
-		RequestDispatcher rd = request.getRequestDispatcher("addParticipants.jsp");
-		Participants pp = new Participants();
-		pp.setFirstName(firstName);
-		pp.setAge(age);
-		pp.setPhoneNumber(phoneNumber);
-		pp.setBid(bid);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("addParticipants.jsp");
+		
+		Participant participant = new Participant();
+		participant.setFirstName(firstName);
+		participant.setAge(age);
+		participant.setPhoneNumber(phoneNumber);
+		participant.setBid(bid);
 
-		String result = ps.addParticipants(pp);
-		pw.print(result);
-		rd.include(request, response);
+		String result = participantService.addParticipants(participant);
+		printWriter.print(result);
+		
+		requestDispatcher.include(request, response);
 	}
 
 	@Override

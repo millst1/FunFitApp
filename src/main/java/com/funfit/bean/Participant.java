@@ -1,18 +1,18 @@
 package com.funfit.bean;
 
-public class Participants {
+public class Participant {
 	private int pid;
 	private String firstName;
 	private int age;
 	private String phoneNumber;
 	private int bid;
 	
-	public Participants() {
+	public Participant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Participants(int pid, String fname, int age, String phoneNumber, int bid) {
+	public Participant(int pid, String fname, int age, String phoneNumber, int bid) {
 		super();
 		this.pid = pid;
 		this.firstName = fname;
@@ -64,7 +64,7 @@ public class Participants {
 
 	@Override
 	public String toString() {
-		return "Participants [pid=" + pid + ", firstName=" + firstName + ", age=" + age + ", phoneNumber=" + phoneNumber
+		return "Participant [pid=" + pid + ", firstName=" + firstName + ", age=" + age + ", phoneNumber=" + phoneNumber
 				+ ", bid=" + bid + "]";
 	}
 }

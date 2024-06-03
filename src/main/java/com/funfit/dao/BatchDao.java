@@ -8,18 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.funfit.bean.Batch;
-import com.funfit.bean.Participants;
+import com.funfit.bean.Participant;
 import com.funfit.resource.DbResource;
 
 public class BatchDao {
 
 	public int addBatch(Batch batch) {
 		try {
-			Connection con = DbResource.getDbConnection();
-			PreparedStatement pstmt = con.prepareStatement("insert into batch(typeofbatch,time) values(?,?)");
-			pstmt.setString(1, batch.getTypeofbatch());
-			pstmt.setString(2, batch.getTime());
-			return pstmt.executeUpdate();
+			Connection connection = DbResource.getDbConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into batch(typeofbatch,time) values(?,?)");
+			
+			preparedStatement.setString(1, batch.getTypeofbatch());
+			preparedStatement.setString(2, batch.getTime());
+			
+			return preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			System.err.println(e);
 			return 0;
@@ -29,15 +31,15 @@ public class BatchDao {
 	public List<Batch> viewAllBatches() {
 		List<Batch> listOfBatch = new ArrayList<>();
 		try {
-			Connection con = DbResource.getDbConnection();
-			PreparedStatement pstmt = con.prepareStatement("select * from batch");
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Batch b = new Batch();
-				b.setBid(rs.getInt(1));
-				b.setTypeofbatch(rs.getString(2));
-				b.setTime(rs.getString(3));
-				listOfBatch.add(b);
+			Connection connection = DbResource.getDbConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from batch");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Batch batch = new Batch();
+				batch.setBid(resultSet.getInt(1));
+				batch.setTypeofbatch(resultSet.getString(2));
+				batch.setTime(resultSet.getString(3));
+				listOfBatch.add(batch);
 			}
 		} catch (Exception e) {
 			System.err.println(e);
