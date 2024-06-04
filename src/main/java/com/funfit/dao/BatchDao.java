@@ -46,4 +46,20 @@ public class BatchDao {
 		}
 		return listOfBatch;
 	}
+	
+	public boolean deleteBatch(int bid) {
+		try {
+			Connection connection = DbResource.getDbConnection();
+			System.out.println("bid="+bid);
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM batch WHERE bid=" + bid);
+			System.out.println("execute");
+			int resultSet = preparedStatement.executeUpdate();
+			
+			return true;
+		} catch (Exception e) {
+			System.err.println(e);
+			
+			return false;
+		}
+	}
 }

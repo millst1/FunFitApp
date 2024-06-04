@@ -7,7 +7,7 @@ import com.funfit.dao.BatchDao;
 
 public class BatchService {
 
-	BatchDao batchDao = new BatchDao();
+	static BatchDao batchDao = new BatchDao();
 
 	public String addBatch(Batch batch) {
 		if (batchDao.addBatch(batch) > 0) {
@@ -19,5 +19,9 @@ public class BatchService {
 
 	public List<Batch> viewAllBatch() {
 		return batchDao.viewAllBatches();
+	}
+	
+	public boolean deleteBatch(int bid) {
+		return batchDao.deleteBatch(bid);
 	}
 }

@@ -19,4 +19,8 @@ public class ParticipantService {
 	public List<Participant> viewAllParticipants() {
 		return participantDao.viewAllParticipants();
 	}
+	
+	public boolean deleteParticipant(int pid) {
+		return participantDao.deleteParticipant(pid);
+	}
 }

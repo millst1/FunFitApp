@@ -30,8 +30,8 @@ public class ParticipantsController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		PrintWriter printWriter = response.getWriter();
+			throws ServletException, IOException
+	{
 		HttpSession httpSession = request.getSession();
 		
 		List<Participant> listOfParticipants = participantService.viewAllParticipants();
@@ -62,15 +62,5 @@ public class ParticipantsController extends HttpServlet {
 		printWriter.print(result);
 		
 		requestDispatcher.include(request, response);
-	}
-
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 }

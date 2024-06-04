@@ -52,4 +52,20 @@ public class ParticipantDao {
 		}
 		return listOfParticipats;
 	}
+	
+	public boolean deleteParticipant(int pid) {
+		try {
+			Connection connection = DbResource.getDbConnection();
+			System.out.println("pid="+pid);
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM participants WHERE pid=" + pid);
+			System.out.println("execute");
+			int resultSet = preparedStatement.executeUpdate();
+			
+			return true;
+		} catch (Exception e) {
+			System.err.println(e);
+			
+			return false;
+		}
+	}
 }

@@ -1,5 +1,7 @@
 package com.funfit.bean;
 
+import com.funfit.service.BatchService;
+
 public class Batch {
 	private int bid;
 	private String typeofbatch;

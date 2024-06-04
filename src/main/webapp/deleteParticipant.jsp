@@ -12,12 +12,12 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<h2>Fun Fit Application!</h2>
-	<a href="addBatch.jsp">Add Batch</a> |
-	<a href="BatchController?flag=2">Add Participants</a> |
-	<a href="BatchController?flag=1">View Batch</a> |
-	<a href="ParticipantsController">View Participants</a> |
-	<a href="BatchDeleteController">Delete Batch</a> |
-	<a href="ParticipantsDeleteController">Delete Participant</a> |
+	<h2>Delete Participant</h2>
+	<form action="ParticipantsDeleteController" method="get">
+		<label>Participant id</label> <input type="number" name="participantId">
+		 <input type="submit" value="Delete batch" />
+	</form>
+	<br />
+	<a href="index.jsp">Back</a>
 </body>
 </html>

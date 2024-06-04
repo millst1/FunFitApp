@@ -36,9 +36,9 @@ public class BatchController extends HttpServlet {
 		List<Batch> listOfBatch = batchService.viewAllBatch();
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("batches", listOfBatch);
-		
+
 		String flagValue = request.getParameter("flag");
-		
+
 		if (flagValue.equals("2")) {
 			response.sendRedirect("addParticipants.jsp");
 		} else {
@@ -52,29 +52,19 @@ public class BatchController extends HttpServlet {
 	{
 		PrintWriter printWriter = response.getWriter();
 		response.setContentType("text/html");
-		
+
 		String typeofbatch = request.getParameter("typeofbatch");
 		String time = request.getParameter("time");
-		
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("addBatch.jsp");
-		
+
 		Batch batch = new Batch();
 		batch.setTypeofbatch(typeofbatch);
 		batch.setTime(time);
-		
+
 		String result = batchService.addBatch(batch);
 		printWriter.println(result);
-		
+
 		requestDispatcher.include(request, response);
-	}
-
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 }
