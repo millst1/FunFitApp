@@ -30,20 +30,18 @@ public class ParticipantsController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
-	{
+			throws ServletException, IOException {
 		HttpSession httpSession = request.getSession();
-		
+
 		List<Participant> listOfParticipants = participantService.viewAllParticipants();
 		httpSession.setAttribute("participants", listOfParticipants);
-		
+
 		response.sendRedirect("viewParticipants.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
-	{
-		
+			throws ServletException, IOException {
+
 		PrintWriter printWriter = response.getWriter();
 		response.setContentType("text/html");
 		String firstName = request.getParameter("firstName");
@@ -51,7 +49,7 @@ public class ParticipantsController extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("addParticipants.jsp");
-		
+
 		Participant participant = new Participant();
 		participant.setFirstName(firstName);
 		participant.setAge(age);
@@ -60,7 +58,7 @@ public class ParticipantsController extends HttpServlet {
 
 		String result = participantService.addParticipants(participant);
 		printWriter.print(result);
-		
+
 		requestDispatcher.include(request, response);
 	}
 }

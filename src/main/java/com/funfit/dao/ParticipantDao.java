@@ -56,9 +56,7 @@ public class ParticipantDao {
 	public boolean deleteParticipant(int pid) {
 		try {
 			Connection connection = DbResource.getDbConnection();
-			System.out.println("pid="+pid);
 			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM participants WHERE pid=" + pid);
-			System.out.println("execute");
 			int resultSet = preparedStatement.executeUpdate();
 			
 			return true;

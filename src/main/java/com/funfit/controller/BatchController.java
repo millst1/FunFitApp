@@ -37,13 +37,7 @@ public class BatchController extends HttpServlet {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("batches", listOfBatch);
 
-		String flagValue = request.getParameter("flag");
-
-		if (flagValue.equals("2")) {
-			response.sendRedirect("addParticipants.jsp");
-		} else {
-			response.sendRedirect("viewBatches.jsp");
-		}
+		response.sendRedirect("viewBatches.jsp");
 	}
 
 	// store or insert

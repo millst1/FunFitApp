@@ -33,7 +33,7 @@ public class ParticipantsDeleteController extends HttpServlet {
 			throws ServletException, IOException
 	{
 		String participantId = request.getParameter("participantId");
-		System.out.println(participantId);
+		
 		if (participantId != null) {
 			int bid = Integer.parseInt(participantId);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("deleteParticipant.jsp");

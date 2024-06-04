@@ -35,9 +35,8 @@ public class BatchDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		System.out.println("DELETE CONTROLLER");
 		String batchId = request.getParameter("batchId");
-		System.out.println(batchId);
+		
 		if (batchId != null) {
 			int bid = Integer.parseInt(batchId);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("deleteBatch.jsp");

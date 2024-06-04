@@ -50,9 +50,7 @@ public class BatchDao {
 	public boolean deleteBatch(int bid) {
 		try {
 			Connection connection = DbResource.getDbConnection();
-			System.out.println("bid="+bid);
 			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM batch WHERE bid=" + bid);
-			System.out.println("execute");
 			int resultSet = preparedStatement.executeUpdate();
 			
 			return true;
