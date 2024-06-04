@@ -32,7 +32,7 @@ public class ParticipantsDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		String participantId = request.getParameter("batchId");
+		String participantId = request.getParameter("participantId");
 		System.out.println(participantId);
 		if (participantId != null) {
 			int bid = Integer.parseInt(participantId);
