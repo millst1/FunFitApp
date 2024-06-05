@@ -29,7 +29,6 @@ public class BatchController extends HttpServlet {
 
 	}
 
-	// view purpose
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
@@ -40,7 +39,6 @@ public class BatchController extends HttpServlet {
 		response.sendRedirect("viewBatches.jsp");
 	}
 
-	// store or insert
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{

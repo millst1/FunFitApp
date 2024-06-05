@@ -11,7 +11,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 </head>
-<body style="text-align: center;">
+<body style="text-align: center;" class="bg-warning">
 	<h2>Delete Participant</h2>
 	<form action="ParticipantsDeleteController" method="get">
 		<label>Participant id</label> <input type="number" name="participantId">

@@ -31,7 +31,6 @@ public class BatchDeleteController extends HttpServlet {
 
 	}
 
-	// view purpose
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
